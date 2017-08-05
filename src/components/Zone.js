@@ -351,4 +351,4 @@ const mapStateToProps = state => {
   return { response }
 }
 Zone = connect(mapStateToProps, { updateZone, updateSuccess })(Zone)
-export default reduxForm()(Zone)
+export default reduxForm({})(Zone)
