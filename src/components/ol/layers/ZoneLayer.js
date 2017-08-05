@@ -31,11 +31,13 @@ const ZoneLayer = isCritical => new ol.layer.Vector({
     })
   	const zone = feature.get('STATE_ZONE')
   	const { status } = isCritical[zone] || ''
-    const color = {
-      'notcritical': 'rgba(44, 107, 36, 0.8)',
-      'critical': 'rgba(160, 35, 28, 0.8)',
-      'approachingcritical': 'rgba(249, 238, 31, 0.8)',
-    }[status] || 'rgba(176, 176, 176, 1)'
+    const color = !status 
+    ? 'rgba(44, 107, 36, 0.8)'
+    : {
+        'notcritical': 'rgba(44, 107, 36, 0.8)',
+        'critical': 'rgba(160, 35, 28, 0.8)',
+        'approachingcritical': 'rgba(249, 238, 31, 0.8)',
+      }[status] || 'rgba(176, 176, 176, 1)'
     style.getFill().setColor(color)
     style.getText().setText(resolution < 5000 ? feature.get('STATE_ZONE') : '');
     return style
